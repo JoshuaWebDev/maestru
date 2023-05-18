@@ -1,0 +1,125 @@
+#!/bin/bash
+projectname="maestru"
+user=joshua
+
+echo "############################################################"
+echo "#     Ajustando as Configurações Iniciais da Aplicação     #"
+echo "############################################################"
+echo ""
+
+echo "Configurando usuário $use"
+echo "chown -R $use:$use /var/www/$projectname/"
+
+if chown -R $use:$use /var/www/$projectname/
+then
+    echo "Usuário e grupo $use criados com sucesso!"
+else
+    echo "Não foi possível alterar as configurações de grupo/usuário para /var/www/$projectname/"
+    echo "Código de Erro: $?"
+fi
+
+echo "Configurando permissões de acesso ao diretório /var/www/$projectname/"
+echo "chmod -R 775 /var/www/$projectname/"
+
+if chmod -R 775 /var/www/$projectname/
+then
+    echo "Permissões de acesso ao diretório /var/www/$projectname/ criadas com sucesso!"
+else
+    echo "Não foi possível alterar as permissões para /var/www/$projectname/"
+    echo "Código de Erro: $?"
+fi
+
+echo "Configurando permissões de acesso ao diretório /var/www/$projectname/storage/"
+echo "chmod -R 775 /var/www/$projectname/storage/"
+
+if chmod -R 775 /var/www/$projectname/storage/
+then
+    echo "Permissões de acesso ao diretório /var/www/$projectname/storage/ configuradas com sucesso!"
+else
+    echo "Não foi possível alterar as permissóes de leitura/escrita para /var/www/$projectname/storage/"
+    echo "Código de Erro: $?"
+fi
+
+echo "Configurando permissões de acesso ao diretório /var/www/$projectname/bootstrap/cache/"
+echo "chmod -R 775 /var/www/$projectname/bootstrap/cache/"
+
+if chmod -R 775 /var/www/$projectname/bootstrap/cache/
+then
+    echo "Permissões de acesso ao diretório /var/www/$projectname/bootstrap/cache/ configuradas com sucesso!"
+else
+    echo "Não foi possível alterar as permissóes de leitura/escrita para /var/www/$projectname/bootstrap/cache/"
+    echo "Código de Erro: $?"
+fi
+
+if cd /var/www/$projectname
+then
+    echo "Acessando diretório /var/www/$projectname"
+else
+    echo "Não foi possível acessar o diretório /var/www/$projectname"
+    echo "Código de Erro: $?"
+fi
+
+echo "Instalando o Composer"
+
+if composer install
+then
+    echo "Composer instalado com sucesso!"
+else
+    echo "Não foi possível instalar o Composer"
+    echo "Código de Erro: $?"
+fi
+
+echo "Criando chave (key) da aplicação"
+
+if php artisan key:generate
+then
+    echo "Chave (key) da aplicação gerada com sucesso!"
+else
+    echo "Não foi possível gerar a chave da aplicação"
+    echo "Código de Erro: $?"
+fi
+
+echo "Limpando e configurando o cache da aplicação"
+
+if php artisan config:cache
+then
+    echo "Cache configurado com sucesso!"
+else
+    echo "Não foi possível limpar/criar o cache da aplicação"
+    echo "Código de Erro: $?"
+fi
+
+echo "Configurando link para o diretório storage"
+
+if php artisan storage:link
+then
+    echo "Configurações de storage realizadas com sucesso!"
+else
+    echo "Não foi possível configurar o link do diretório storage"
+    echo "Código de Erro: $?"
+fi
+
+if chown -R www-data:www-data storage && chmod -R 755 storage
+
+##############################################################
+# With user root:root . You try with command :               #
+#                                                            #
+# sudo chmod -R 777 storage/                                 #
+#-----------------------------------------------------       #
+# With user www-data:www-data . You try with command :       #
+#                                                            #
+# sudo chown -R www-data:www-data storage/                   #
+# sudo chmod -R 755 storage/                                 #
+#-----------------------------------------------------       #
+# If you use Docker . You try with command :                 #
+#                                                            #
+# sudo chown -R nginx:nginx storage/                         #
+# sudo chmod -R 755 storage/                                 #
+##############################################################
+
+then
+    echo "Permissões de acesso ao diretório storage realizadas com sucesso!"
+else
+    echo "Não foi possível configurar o link do diretório storage"
+    echo "Código de Erro: $?"
+fi
