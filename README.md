@@ -68,9 +68,9 @@ Aqui algumas respostas de possíveis dúvidas que podem surgir durante o process
 
 - O container `db` não sobe
 
-> Se após executar o comando `docker-compose up -d` o container `app` subir mas o `db` verifica as mensagens de log se há alguma mensagem do tipo:
+> Se após executar o comando `docker-compose up -d` o container `app` subir mas o `db` não, verifique nas mensagens de log, se houver alguma mensagem do tipo:
 > 
 >> [ERROR] [MY-013236] [Server] The designated data directory /var/lib/mysql/ is unusable. You can remove all files that the server added to it.
 > 
-> Acesse o diretório `docker/db/` e apague todos os arquivos que estejam dentro dele
+> Acesse o diretório `docker/db/mysql/lib/` e apague todos os arquivos que estejam dentro dele
 
