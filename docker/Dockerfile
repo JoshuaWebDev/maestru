@@ -8,7 +8,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install -j "$(nproc)" gd
 RUN docker-php-source delete
 
-ENV USER joshua
+ENV USER maestru
 ENV UID 1000
 
 RUN curl -sS https://getcomposer.org/installer | php

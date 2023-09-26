@@ -1,4 +1,4 @@
-<p align="center">
+<p style="display: flex; justify-content: center">
 <img src="public/img/logo-maestru.png" alt="Logo Maestru">
 </p>
 
@@ -25,7 +25,7 @@ Copie o arquivo ```.env.example``` e renomeie para ```.env```
 ```
 cp .env.example .env
 ```
-Altere o valor de ```DB_DATABASE``` para o nome do banco de dados onde serão armazenados os dados da aplicação. Altere o valor de ```DB_USERNAME``` para o usuário que terá acesso a base de dados da aplicação. E altere o valor de ```DB_PASSWORD``` para a senha de acesso a base de dados da aplicação.
+É possível modificar as configurações da base de dados alterando o valor de ```DB_DATABASE``` para o nome do banco de dados que desejar, o valor de ```DB_USERNAME``` para o usuário que terá acesso a base de dados e o valor de ```DB_PASSWORD``` para a senha de acesso a base de dados.
 
 ```
 DB_DATABASE=
@@ -62,6 +62,15 @@ docker exec -it maestru-app initial-configurations
 
 Após finalizar as configurações iniciais já é possível visualizar a página inicial da aplicação no navegador no endereço http://127.0.0.1
 
-### Ambiente de produção
+# FAQ (Frequent Answers & Questions)
 
-Em breve...
+Aqui algumas respostas de possíveis dúvidas que podem surgir durante o processo de instalação.
+
+- O container `db` não sobe
+
+> Se após executar o comando `docker-compose up -d` o container `app` subir mas o `db` verifica as mensagens de log se há alguma mensagem do tipo:
+> 
+>> [ERROR] [MY-013236] [Server] The designated data directory /var/lib/mysql/ is unusable. You can remove all files that the server added to it.
+> 
+> Acesse o diretório `docker/db/` e apague todos os arquivos que estejam dentro dele
+

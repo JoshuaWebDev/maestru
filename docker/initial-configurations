@@ -1,18 +1,18 @@
 #!/bin/bash
 projectname="maestru"
-user=joshua
+user=maestru
 
 echo "############################################################"
 echo "#     Ajustando as Configurações Iniciais da Aplicação     #"
 echo "############################################################"
 echo ""
 
-echo "Configurando usuário $use"
-echo "chown -R $use:$use /var/www/$projectname/"
+echo "Configurando usuário $user"
+echo "chown -R $user:$user /var/www/$projectname/"
 
-if chown -R $use:$use /var/www/$projectname/
+if chown -R $user:$user /var/www/$projectname/
 then
-    echo "Usuário e grupo $use criados com sucesso!"
+    echo "Usuário e grupo $user criados com sucesso!"
 else
     echo "Não foi possível alterar as configurações de grupo/usuário para /var/www/$projectname/"
     echo "Código de Erro: $?"

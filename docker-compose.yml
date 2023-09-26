@@ -29,4 +29,4 @@ services:
       MYSQL_USER: '${DB_USERNAME}'
       MYSQL_PASSWORD: '${DB_PASSWORD}'
     volumes:
-      - './docker/db:/var/lib/mysql'
+      - './docker/db/mysql/lib:/var/lib/mysql'
